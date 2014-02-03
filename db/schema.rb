@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140203203058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "instructors", force: true do |t|
+  create_table "users", force: true do |t|
     t.integer  "sign_in_count",      default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"

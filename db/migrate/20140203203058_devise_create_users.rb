@@ -1,6 +1,6 @@
-class DeviseCreateInstructors < ActiveRecord::Migration
+class DeviseCreateUsers < ActiveRecord::Migration
   def change
-    create_table(:instructors) do |t|
+    create_table(:users) do |t|
       ## Trackable
       t.integer  :sign_in_count, :default => 0, :null => false
       t.datetime :current_sign_in_at
