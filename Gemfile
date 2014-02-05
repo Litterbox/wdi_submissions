@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 gem 'pg'
-gem 'pry'
+gem 'pry', :group => [:development, :test]
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -42,8 +42,10 @@ gem 'omniauth-github'
 
 gem 'rails_12factor', group: :production
 
+gem 'rspec-rails', group: [:test, :development]
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
