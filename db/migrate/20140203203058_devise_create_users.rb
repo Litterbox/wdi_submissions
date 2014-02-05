@@ -11,6 +11,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.timestamps
       t.string :provider
       t.string :uid
+
+      t.string :name
+      t.string :gh_nickname
+      t.string :avatar_url
     end
+    add_index :users, [:provider, :uid]
   end
 end

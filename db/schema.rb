@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20140203203058) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "name"
+    t.string   "gh_nickname"
+    t.string   "avatar_url"
   end
+
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", using: :btree
 
 end
