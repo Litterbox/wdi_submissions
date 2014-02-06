@@ -4,6 +4,14 @@ class User < ActiveRecord::Base
   devise :trackable, :omniauthable, :omniauth_providers => [:github]
   validates_presence_of :provider, :uid, :gh_nickname
 
+  def self.instructors
+    where(:is_instructor => true)
+  end
+
+  def self.students
+    where(:is_instructor => false)
+  end
+  
   def self.find_for_gh_oauth omniauth_env
     user = where(omniauth_env.slice(:provider, :uid)).first_or_initialize
 

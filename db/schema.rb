@@ -17,20 +17,22 @@ ActiveRecord::Schema.define(version: 20140203203058) do
   enable_extension "plpgsql"
 
   create_table "users", force: true do |t|
-    t.integer  "sign_in_count",      default: 0, null: false
+    t.integer  "sign_in_count",      default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "provider",                           null: false
+    t.string   "uid",                                null: false
     t.string   "name"
-    t.string   "gh_nickname"
+    t.string   "gh_nickname",                        null: false
     t.string   "avatar_url"
+    t.boolean  "is_instructor",      default: false, null: false
   end
 
-  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", using: :btree
+  add_index "users", ["gh_nickname"], name: "index_users_on_gh_nickname", using: :btree
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
 
 end

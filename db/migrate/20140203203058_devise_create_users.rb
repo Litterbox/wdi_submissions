@@ -9,13 +9,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
 
       t.timestamps
-      t.string :provider
-      t.string :uid
+      t.string :provider, :null => false
+      t.string :uid, :null => false
 
       t.string :name
-      t.string :gh_nickname
+      t.string :gh_nickname, :null => false, :unique => :true
       t.string :avatar_url
+      t.boolean :is_instructor, :default => false, :null => false
     end
-    add_index :users, [:provider, :uid]
+    add_index :users, [:provider, :uid], :unique => true
+    add_index :users, :gh_nickname
   end
 end
