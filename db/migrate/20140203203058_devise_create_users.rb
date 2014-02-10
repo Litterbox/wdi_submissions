@@ -16,6 +16,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :gh_nickname, :null => false, :unique => :true
       t.string :avatar_url
       t.boolean :is_instructor, :default => false, :null => false
+      t.integer :squad_leader_id
     end
     add_index :users, [:provider, :uid], :unique => true
     add_index :users, :gh_nickname

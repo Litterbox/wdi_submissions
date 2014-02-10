@@ -1,4 +1,4 @@
 module Instructors
-	class InstructorsController
+	class InstructorsController < BaseController
 	end
 end
