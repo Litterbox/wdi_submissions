@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 gem 'pg'
-gem 'pry', :group => [:development, :test]
 gem 'foreigner'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -13,9 +12,6 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -31,21 +27,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-byebug'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'devise'
 gem 'omniauth-github'
 
 gem 'rails_12factor', group: :production
-
-gem 'rspec-rails', group: [:test, :development]
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-gem 'pry-byebug', group: [:development, :test]
