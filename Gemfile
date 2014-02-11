@@ -31,6 +31,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'dotenv-rails'
 end
 
 gem 'bcrypt-ruby', '~> 3.1.2'

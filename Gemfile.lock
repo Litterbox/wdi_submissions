@@ -49,6 +49,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     erubis (2.7.0)
     execjs (2.0.2)
     faraday (0.9.0)
@@ -180,6 +183,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   coffee-rails (~> 4.0.0)
   devise
+  dotenv-rails
   foreigner
   jbuilder (~> 1.2)
   jquery-rails
