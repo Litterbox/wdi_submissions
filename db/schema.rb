@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140207171016) do
     t.integer  "user_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.text     "text"
   end
 
   create_table "submissions", force: true do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140207171016) do
     t.datetime "submitted_at"
     t.string   "feelings"
     t.text     "submitter_comments"
+    t.integer  "assignment_id"
   end
 
   create_table "users", force: true do |t|

@@ -7,17 +7,20 @@ class AddSubmissionsCommentsAssignmentsTables < ActiveRecord::Migration
   		t.datetime :submitted_at
   		t.string :feelings
   		t.text :submitter_comments
+      t.integer :assignment_id
   	end
 
   	create_table :comments do |t|
   		t.timestamps
   		t.integer :user_id
   		t.integer :commentable_id
-  		t.string :commentable_type
+  		t.string  :commentable_type
+      t.text    :text
   	end
 
     create_table :assignments do |t|
       t.string :name
     end
+
   end
 end
