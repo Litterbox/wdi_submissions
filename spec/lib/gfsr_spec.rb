@@ -6,7 +6,7 @@ describe GFSR do
 			CSV.parse(f)
 		end
 	end
-	
+
   describe '.normalize_line' do
   	it 'normalizes a line' do
   		raw_line = @raw_data[1]
@@ -21,6 +21,10 @@ describe GFSR do
   		})
       result[:name].should == "messenger bag"
   	end
+    it 'reads a line with a non-github link' do
+      result = GFSR.normalize_line(@raw_data[10])
+      result[:gh_nickname].should == nil
+    end
   end
   describe '.from_file' do
     it 'pulls the results from a file' do
