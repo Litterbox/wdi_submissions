@@ -11,28 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203203058) do
+ActiveRecord::Schema.define(version: 20140207171016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "assignments", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "comments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+  end
+
+  create_table "submissions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "student_id"
+    t.string   "link"
+    t.datetime "submitted_at"
+    t.string   "feelings"
+    t.text     "submitter_comments"
+  end
+
   create_table "users", force: true do |t|
-    t.integer  "sign_in_count",      default: 0,     null: false
+    t.integer  "sign_in_count",      default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider",                           null: false
-    t.string   "uid",                                null: false
+    t.string   "uid",                            null: false
+    t.string   "provider",                       null: false
+    t.string   "type",                           null: false
     t.string   "name"
-    t.string   "gh_nickname",                        null: false
+    t.string   "gh_nickname",                    null: false
     t.string   "avatar_url"
-    t.boolean  "is_instructor",      default: false, null: false
+    t.integer  "squad_leader_id"
+    t.string   "first_name"
   end
 
-  add_index "users", ["gh_nickname"], name: "index_users_on_gh_nickname", using: :btree
+  add_index "users", ["gh_nickname"], name: "index_users_on_gh_nickname", unique: true, using: :btree
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
 
 end
