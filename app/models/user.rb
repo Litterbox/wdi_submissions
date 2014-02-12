@@ -3,15 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :trackable, :omniauthable, :omniauth_providers => [:github]
   validates_presence_of :provider, :uid, :gh_nickname
+  has_many :comments
 
-  def self.instructors
-    where(:is_instructor => true)
-  end
-
-  def self.students
-    where(:is_instructor => false)
-  end
-  
   def self.find_for_gh_oauth omniauth_env
     user = where(omniauth_env.slice(:provider, :uid)).first_or_initialize
 
@@ -24,9 +17,5 @@ class User < ActiveRecord::Base
     end
 
     user
-  end
-
-  def has_instructor?
-    true
   end
 end
