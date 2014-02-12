@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 describe Submission do
+  context 'google forms data' do
 	let(:submission_fixtures) do
 		GFSR.from_file(File.join(Rails.root, "spec", "fixtures", "gfsd.csv"))
 	end
-  describe '.new_from_gfsd' do
-    let(:data)              {submission_fixtures[0] }
+      let(:data)              {submission_fixtures[0] }
     let(:data_without_gh)   {submission_fixtures[9] }
     let(:data_with_comment) {submission_fixtures[19]}
+  describe '.new_from_gfsd' do
+
 
   	it 'sets up a submission for saving' do
       sub = Submission.new_from_gfsd(data)
@@ -33,7 +35,7 @@ describe Submission do
       student.id.should == old_student.id
   		student.gh_nickname.should == data[:gh_nickname]
     end
-    it 'correctly leaves a student nil when there is no gh_nickname' do 
+    it 'correctly leaves a student nil when there is no gh_nickname' do
       data_without_gh[:gh_nickname].should == nil # Just to be sure.
       sub = Submission.new_from_gfsd(data_without_gh)
       sub.student.should == nil
@@ -59,4 +61,9 @@ describe Submission do
       sub.assignment.id.should == nil
     end
   end
+
+  describe '.find_or_create_from_gfsd' do
+    it 'retrieves a persisted submission if it exists'
+  end
+end
 end
