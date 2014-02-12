@@ -32,6 +32,7 @@ group :test, :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
 end
 
 gem 'bcrypt-ruby', '~> 3.1.2'
