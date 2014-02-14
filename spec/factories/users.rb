@@ -5,6 +5,7 @@ FactoryGirl.define do
   	provider :github
   	uid { SecureRandom.urlsafe_base64(8) }
   	gh_nickname {SecureRandom.urlsafe_base64(6)}
+    name { 'Joe Shmoe' }
 
   	factory :student, :class => Student do
   	end
