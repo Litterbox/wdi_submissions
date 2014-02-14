@@ -29,10 +29,18 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'guard-rails'
+  gem 'guard-rspec'
   gem 'pry'
   gem 'pry-byebug'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'quiet_assets'
+  gem 'binding_of_caller'
 end
 
 gem 'bcrypt-ruby', '~> 3.1.2'
