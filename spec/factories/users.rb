@@ -8,9 +8,11 @@ FactoryGirl.define do
     name { 'Joe Shmoe' }
 
   	factory :student, :class => Student do
+      user_type { 'student' }
   	end
 
   	factory :instructor, :class => Instructor do
+      user_type { 'instructor' }
   	end
   end
 end
