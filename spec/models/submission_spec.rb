@@ -63,7 +63,21 @@ describe Submission do
   end
 
   describe '.find_or_create_from_gfsd' do
-    it 'retrieves a persisted submission if it exists'
+    it 'retrieves a persisted submission if it exists' do 
+      sub = Submission.new_from_gfsd(data)
+      sub.save!
+
+      found_sub = Submission.find_or_create_from_gfsd(data)
+      found_sub.should == sub
+    end
+
+    it 'builds and saves a submission if it does not exist' do
+      new_sub = double
+      Submission.should_receive(:new_from_gfsd).and_return(new_sub)
+      new_sub.should_receive(:save!)
+
+      sub = Submission.find_or_create_from_gfsd(data)
+    end
   end
 end
 end

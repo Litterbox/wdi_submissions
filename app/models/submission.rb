@@ -1,5 +1,5 @@
 class Submission < ActiveRecord::Base
-  belongs_to :student
+  belongs_to :student 
   has_many :comments, :as => :commentable
   belongs_to :assignment
 
@@ -18,5 +18,18 @@ class Submission < ActiveRecord::Base
 
       sub.assignment = Assignment.find_or_initialize_by(:name => sub_data[:assignment])
     end
+  end
+
+  def self.find_or_create_from_gfsd(sub_data)
+  	submission = Submission.joins(:student, :assignment).where(
+      :users => {:gh_nickname => sub_data[:gh_nickname]},
+      :assignments => {:name => sub_data[:assignment]},
+      :submitted_at => sub_data[:submitted_at]
+    ).first
+    unless submission
+      submission = new_from_gfsd(sub_data)
+      submission.save!
+    end
+    submission
   end
 end

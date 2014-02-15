@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :trackable, :omniauthable, :omniauth_providers => [:github]
-  validates_presence_of :provider, :uid, :gh_nickname
+  validates_presence_of :gh_nickname
   has_many :comments
 
   def self.find_for_gh_oauth omniauth_env
