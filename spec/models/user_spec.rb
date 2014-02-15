@@ -16,13 +16,13 @@ describe User do
     end
     context 'user exists' do
       it 'should retun the user' do
-        @user = FactoryGirl.create(:user, uid: 123545, user_type: 'any')
+        @user = FactoryGirl.create(:student, uid: 123545)
         User.find_for_gh_oauth(@auth_hash).should == @user
       end
     end
     context 'user does NOT exist' do
-      it 'should create a STUDENT' do
-        User.find_for_gh_oauth(@auth_hash).user_type.should == 'student'
+      it 'should return a STUDENT' do
+        User.find_for_gh_oauth(@auth_hash).type.should == 'Student'
       end
     end
     context 'when INSTRUCTOR matching gh handle IS FOUND' do

@@ -7,12 +7,8 @@ FactoryGirl.define do
   	gh_nickname {SecureRandom.urlsafe_base64(6)}
     name { 'Joe Shmoe' }
 
-  	factory :student, :class => Student do
-      user_type { 'student' }
-  	end
+  	factory :student, :class => Student
 
-  	factory :instructor, :class => Instructor do
-      user_type { 'instructor' }
-  	end
+  	factory :instructor, :class => Instructor
   end
 end
