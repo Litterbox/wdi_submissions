@@ -5,7 +5,7 @@ module Instructors
 		end
 		
 		before_filter do
-			redirect_to student_path(current_user) unless current_user.is_instructor?
+			redirect_to student_path(current_user) unless current_user.is_a? Instructor
 		end
 	end
 end
