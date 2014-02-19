@@ -15,7 +15,7 @@ describe Users::OmniauthCallbacksController do
     end
 
     it 'should redirect the user' do
-      controller.should redirect_to instructors_students_path(@user)
+      controller.should redirect_to students_path
     end
 
     it 'set the Github success notice' do
