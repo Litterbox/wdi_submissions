@@ -9,7 +9,8 @@ module GFSR
 	#               "Alex's Comments", "Tim's Comments"]
 	DATE_FORMAT = "%m/%d/%Y %H:%M:%S"
 	SQUAD_LEADER_ADDITION_DATE = DateTime.strptime("1/27/2014 12:36:04", DATE_FORMAT )
-	
+	BANNED_NICKNAMES = ['anonymous', 'wdi-sf-jan-2014']
+
 	def self.from_file filename
 		data = File.open filename do |f|
 			CSV.parse(f)
@@ -48,7 +49,7 @@ module GFSR
 		result[:link] = l[5]
 
 		if match = /github.com\/([\w-]+)\/(.+)/.match(result[:link])
-			result[:gh_nickname] = match[1] unless match[1] == 'anonymous'
+			result[:gh_nickname] = match[1] unless BANNED_NICKNAMES.include?(match[1])
 		end
 		
 		result[:instructor_comments] = {}

@@ -41,6 +41,13 @@ describe GFSR do
 
     it 'does not accept anonymous as a gh_nickname' do
       n = 21
+      @raw_data[n][5].should include("anonymous")
+      result = GFSR.normalize_line(@raw_data[n])
+      result[:gh_nickname].should == nil
+    end
+    it 'does not accept wdi-sf-jan-2014 as a gh_nickname' do
+      n = 22
+      @raw_data[n][5].should include("wdi-sf-jan-2014")
       result = GFSR.normalize_line(@raw_data[n])
       result[:gh_nickname].should == nil
     end
