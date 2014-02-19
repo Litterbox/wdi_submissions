@@ -7,15 +7,15 @@ module ValidUserRequestHelper
   def sign_in_as_a_valid_instructor
     @instructor = FactoryGirl.create(:instructor) 
 
-    #@request.env['omniauth.auth'] = {
-    #  provider: 'github',
-    #  uid: @user.uid,
-    #  info: {
-    #    name: 'github user',
-    #    image: 'gravatar image',
-    #    nickname: 'gh-nickname'
-    #  } 
-    #}
+    OmniAuth.config.mock_auth[:github] = {
+      provider: @instructor.provider,
+      uid: @instructor.uid,
+      info: {
+        name: @instructor.name,
+        image: 'gravatar image',
+        nickname: @instructor.gh_nickname 
+      } 
+    }
 
     get user_omniauth_callback_path(:github), format: :json
   end
@@ -26,3 +26,4 @@ RSpec.configure do |config|
   config.include ValidUserRequestHelper, :type => :request 
 end
 
+OmniAuth.config.test_mode = true
