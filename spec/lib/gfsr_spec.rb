@@ -25,6 +25,19 @@ describe GFSR do
       result = GFSR.normalize_line(@raw_data[10])
       result[:gh_nickname].should == nil
     end
+
+    it 'reads the gh_nickname from a gist correctly' do
+      n = 7
+      @raw_data[n][5].should include("gist")
+      result = GFSR.normalize_line(@raw_data[n])
+      result[:gh_nickname].should == "bp6yzf5wpl"
+    end
+    it 'reads the gh_nickname from a tree/master link' do
+      n = 16
+      @raw_data[n][5].should include("tree/master")
+      result = GFSR.normalize_line(@raw_data[n])
+      result[:gh_nickname].should == "n3h84uurt"
+    end
   end
   describe '.from_file' do
     it 'pulls the results from a file' do

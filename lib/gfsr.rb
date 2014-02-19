@@ -47,7 +47,7 @@ module GFSR
 		result[:feelings] = l[4]
 		result[:link] = l[5]
 
-		if match = /github.com\/(.+)\/(.+)/.match(result[:link])
+		if match = /github.com\/([\w-]+)\/(.+)/.match(result[:link])
 			result[:gh_nickname] = match[1]
 		end
 		
