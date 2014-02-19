@@ -38,6 +38,12 @@ describe GFSR do
       result = GFSR.normalize_line(@raw_data[n])
       result[:gh_nickname].should == "n3h84uurt"
     end
+
+    it 'does not accept anonymous as a gh_nickname' do
+      n = 21
+      result = GFSR.normalize_line(@raw_data[n])
+      result[:gh_nickname].should == nil
+    end
   end
   describe '.from_file' do
     it 'pulls the results from a file' do

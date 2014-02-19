@@ -47,7 +47,7 @@ describe Submission do
       sub = Submission.new_from_gfsd(data_without_gh)
       sub.student.should == nil
     end
-    it 'does not choke on a squad leader with no gh_nickname' do
+    it 'does not choke on a squad leader with no student gh_nickname' do
       instructor = FactoryGirl.create(:instructor)
       data_without_gh[:gh_nickname].should == nil # Just to be sure.
       data_without_gh[:squad_leader] = instructor.first_name
@@ -55,6 +55,7 @@ describe Submission do
       sub = Submission.new_from_gfsd(data_without_gh)
       sub.student.should == nil
     end
+
     it 'correctly sets up the comments' do
       instructor = FactoryGirl.create(:instructor, :name => "Tim Garcia")
 

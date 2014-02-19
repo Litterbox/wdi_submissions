@@ -48,7 +48,7 @@ module GFSR
 		result[:link] = l[5]
 
 		if match = /github.com\/([\w-]+)\/(.+)/.match(result[:link])
-			result[:gh_nickname] = match[1]
+			result[:gh_nickname] = match[1] unless match[1] == 'anonymous'
 		end
 		
 		result[:instructor_comments] = {}
