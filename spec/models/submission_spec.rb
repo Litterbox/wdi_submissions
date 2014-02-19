@@ -26,6 +26,14 @@ describe Submission do
       student.id.should == nil
   		student.gh_nickname.should == data[:gh_nickname]
     end
+
+    it 'sets a squad leader if one exists with the name' do
+      instructor = FactoryGirl.create(:instructor, :name => "Markus Guehrs")
+
+      sub = Submission.new_from_gfsd(submission_fixtures[19])
+      student = sub.student
+      student.squad_leader.should == instructor
+    end
     it 'correctly sets up the already existing submitting student' do
       old_student = FactoryGirl.create(:student, :gh_nickname => data[:gh_nickname])
       sub = Submission.new_from_gfsd(data)
