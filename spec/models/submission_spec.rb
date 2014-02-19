@@ -23,6 +23,7 @@ describe Submission do
       student.should_not == nil
       student.id.should == nil
   		student.gh_nickname.should == data[:gh_nickname]
+      student.name.should == data[:name]
     end
 
     it 'sets a squad leader if one exists with the name' do
@@ -91,6 +92,9 @@ describe Submission do
       new_sub = double
       Submission.should_receive(:new_from_gfsd).and_return(new_sub)
       new_sub.should_receive(:save!)
+      
+      new_sub.stub(:student).and_return(double)
+      new_sub.student.stub(:save!)
 
       sub = Submission.find_or_create_from_gfsd(data)
     end
