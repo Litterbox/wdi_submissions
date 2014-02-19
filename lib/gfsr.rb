@@ -40,7 +40,6 @@ module GFSR
 
 	def self.normalize_line l
 		result = {}
-		binding.pry if l[0] == 1
 		result[:submitted_at] = parse_date(l[0])
 		result[:name] = get_name(l)
 		result[:assignment] = l[2]
@@ -55,7 +54,7 @@ module GFSR
 		result[:instructor_comments] = {}
 
 		if parse_date(l[0]) >= SQUAD_LEADER_ADDITION_DATE
-			result[:squad_leader] = l[7]
+			result[:squad_leader] = l[7].downcase
 			result[:instructor_comments][:raphael] = nil
 		else
 			result[:instructor_comments][:raphael] = l[7]
