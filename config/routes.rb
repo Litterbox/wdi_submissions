@@ -4,7 +4,7 @@ Submissions::Application.routes.draw do
   get :index, :to => 'site#index', :as => :new_session	
 
   resources :students, :only => [:index, :show] do
-    get :pull_requests, to: 'students#pull_requests'
+    get :submissions, to: 'students#submissions'
   end
   resources :instructors, :only => [:show]
   resources :submissions

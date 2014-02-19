@@ -1,6 +1,6 @@
 class StudentsController < BaseController
-  def pull_requests
-    @pull_requests = []
+  def submissions
+    @submissions = []
   end
   def index
   end
