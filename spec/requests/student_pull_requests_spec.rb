@@ -5,7 +5,7 @@ describe "Student pull requests" do
     it "displays the submissions" do
       sign_in_as_a_valid_instructor
       @student = FactoryGirl.create(:student, squad_leader_id: @instructor)
-      submissions = mock_pull_requests
+      submissions = mock_pull_requests 'repo'
       get student_submissions_path(@student.id)
       submissions.each do |sub|
         response.body.should include(sub.title)
