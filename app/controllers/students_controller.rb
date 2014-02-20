@@ -1,5 +1,5 @@
 class StudentsController < BaseController
   def submissions
-    @submissions = []
+    @submissions = Octokit.pull_requests
   end
 end
