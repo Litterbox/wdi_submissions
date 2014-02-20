@@ -48,4 +48,6 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'devise'
 gem 'omniauth-github'
 
+gem 'octokit'
+
 gem 'rails_12factor', group: :production
