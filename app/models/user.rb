@@ -12,9 +12,11 @@ class User < ActiveRecord::Base
       user.name = omniauth_env.info.name
       user.avatar_url = omniauth_env.info.image
       user.gh_nickname = omniauth_env.info.nickname
-      user.type = 'Student'
+      user.type = "Student"
 
       user.save!
+
+      user = user.becomes(Student)
     end
 
     user

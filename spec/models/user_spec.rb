@@ -9,8 +9,14 @@ describe User do
       end
     end
     context 'user does NOT exist' do
-      it 'should return a STUDENT' do
-        User.find_for_gh_oauth(mock_auth_hash).type.should == 'Student'
+      it 'should create a STUDENT' do
+        expect do
+          User.find_for_gh_oauth(mock_auth_hash)
+        end.to change(User, :count).by(1)
+      end
+
+      it 'should return the STUDENT' do
+        User.find_for_gh_oauth(mock_auth_hash).should be_a(Student)
       end
     end
     context 'when INSTRUCTOR matching gh handle IS FOUND' do
