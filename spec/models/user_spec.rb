@@ -3,9 +3,18 @@ require 'spec_helper'
 describe User do
   describe '.find_for_gh_oauth' do
     context 'user exists' do
-      it 'should retun the user' do
+      before do
         @user = FactoryGirl.create(:student)
-        User.find_for_gh_oauth(mock_auth_hash(@user)).should == @user
+        @auth_hash = mock_auth_hash @user
+      end
+      it 'should return the user' do
+        User.find_for_gh_oauth(@auth_hash).should == @user
+      end
+
+      it 'should not create a new user' do
+        expect do
+          User.find_for_gh_oauth(@auth_hash)
+        end.not_to change(User, :count)
       end
     end
     context 'user does NOT exist' do
