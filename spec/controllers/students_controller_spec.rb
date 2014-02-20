@@ -5,15 +5,14 @@ describe StudentsController do
     before do
       @user = FactoryGirl.create(:instructor)
       @user.stub(:is_instructor?) { true }
-      @submissions = mock_pull_requests 'repo'
+      @submissions = mock_pull_requests_for_org ENV['GA_ORG_NAME']
       controller.stub(:current_user) { @user }
+      get :submissions, student_id: 2
     end
     it 'assigns @submissions' do
-      get :submissions, student_id: 2
       assigns(:submissions).should == @submissions
     end
     it 'renders pull requests template' do
-      get :submissions, student_id: 2
       response.should render_template 'submissions'
     end
   end
