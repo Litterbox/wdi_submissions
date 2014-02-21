@@ -11,7 +11,7 @@ module OctokitHelper
       double('Sawyer::Resource', name: 'repo 1'),
       double('Sawyer::Resource', name: 'repo 2')
     ]
-    Octokit.stub(:org_repos) { |org=org| @repos }
+    Octokit::Client.any_instance.stub(:org_repos) { |org=org| @repos }
     @repos
   end
   def mock_pull_requests repo, gh_handle=nil
@@ -19,7 +19,7 @@ module OctokitHelper
       double('Sawyer::Resource', title: 'pr 1'),
       double('Sawyer::Resource', title: 'pr 2')
     ]
-    Octokit.stub(:pull_requests) { |repo| @pulls }
+    Octokit::Client.any_instance.stub(:pull_requests) { |repo| @pulls }
     @pulls 
   end
 end
