@@ -50,6 +50,7 @@ gem 'devise'
 gem 'omniauth-github'
 
 gem 'octokit'
+gem 'faraday-http-cache'
 gem 'haml'
 
 gem 'rails_12factor', group: :production
