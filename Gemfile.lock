@@ -73,6 +73,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faraday-http-cache (0.4.0)
+      faraday (~> 0.8)
     ffi (1.9.3)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
@@ -243,6 +245,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl_rails
+  faraday-http-cache
   foreigner
   guard-rails
   guard-rspec
