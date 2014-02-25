@@ -5,7 +5,7 @@ module OctokitHelper
      mock_org_repos(org).map do |repo| 
       mock_pull_requests repo 
     end.flatten.group_by do |pull|
-      pull.head.user
+      pull.head.user.login
     end
   end
   def mock_org_repos org
