@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(res)
     stored_location_for(res) ||
       if res.is_a? Instructor
-        students_path
+        submissions_path
       else
         student_path(res)
       end
