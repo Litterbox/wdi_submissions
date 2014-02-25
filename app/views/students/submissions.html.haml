@@ -3,4 +3,4 @@
 - @submissions.each do |user, submissions|
   %h2= user
   - submissions.each do |sub|
-    %div= sub.title
+    %div= "#{sub.repo.name} - #{sub.title}"

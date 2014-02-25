@@ -5,7 +5,7 @@ module OctokitHelper
      mock_org_repos(org).map do |repo| 
       mock_pull_requests repo 
     end.flatten.group_by do |pull|
-      pull.head.user.login
+      pull.user.login
     end
   end
   def mock_org_repos org
@@ -17,13 +17,12 @@ module OctokitHelper
     @repos
   end
   def mock_pull_requests repo, gh_handle=nil
-    @pull_head ||= double(
-      'Sawyer::Resource', 
-      user: double('Sawyer::Resource', login: 'fake-gh-handle')
-    )
+    @gh_user ||= double('Sawyer::Resource', login: 'fake-gh-handle')
+    @gh_repo ||= double('Sawyer::Resource', repo: double('Sawyer::Resource', name: repo))
+
     @pulls ||= [
-      double('Sawyer::Resource', title: 'pr 1', head: @pull_head),
-      double('Sawyer::Resource', title: 'pr 2', head: @pull_head)
+      double('Sawyer::Resource', title: 'pr 1', user: @gh_user, head: @gh_repo),
+      double('Sawyer::Resource', title: 'pr 2', user: @gh_user, head: @gh_repo)
     ]
     Octokit::Client.any_instance.stub(:pull_requests) { |repo| @pulls }
     @pulls 
